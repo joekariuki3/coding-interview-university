@@ -6,14 +6,14 @@ Custom implementation of array data structure
 
 
 class Array:
-    def __init__(self, size: int):
+    def __init__(self, capacity: int):
         """
-        size : number of items to be stored in the array
+        capacity : number of items to be stored in the array
         """
-        if not isinstance(size, int):
-            raise TypeError("size should be an int")
-        self.size = size
-        self.container = [None] * size
+        if not isinstance(capacity, int):
+            raise TypeError("capacity should be an int")
+        self.capacity = capacity
+        self.container = [None] * capacity
 
     def __str__(self):
         """
@@ -21,15 +21,36 @@ class Array:
         """
         return " ".join(str(item) for item in self.container)
 
+    def capacity(self):
+        """
+        returns number of items array can hold
+        """
+        return self.capacity
+
     def __len__(self):
         """
-        returns the current length of elements not total size
+        returns the current length of elements not total capacity
         """
         count = 0
         for i in self.container:
             if i is not None:
                 count = count + 1
         return count
+
+    def size(self):
+        """
+        returns the number of items in array
+        """
+        return self.__len__()
+
+    def is_empty(self):
+        """
+        returns true if array has no value else false
+        """
+        for item in self.container:
+            if item is not None:
+                return False
+        return True
 
     def __getitem__(self, index):
         """
@@ -38,11 +59,18 @@ class Array:
         usage: my_array[index]
         returns  an element a specific index in an array
         """
-        if index >= self.size:
+        if index >= self.capacity:
             raise IndexError(
-                f"index does not exist. Valid index {self.size - self.size} - {self.size - 1}"
+                f"index does not exist. Valid index {self.capacity - self.capacity} - {self.capacity - 1}"
             )
         return self.container[index]
+
+    def at(self, index):
+        """
+        returns an item at a given index.
+        blows up if index out of bounce
+        """
+        return self.__getitem__(index)
 
     def __setitem__(self, index: int, value: any):
         """
@@ -51,9 +79,9 @@ class Array:
         value: value to be set
         usage: my_array[index] = value
         """
-        if index >= self.size:
+        if index >= self.capacity:
             raise IndexError(
-                f"index does not exist. Valid index {self.size - self.size} - {self.size - 1}"
+                f"index does not exist. Valid index {self.capacity - self.capacity} - {self.capacity - 1}"
             )
         self.container[index] = value
 
@@ -70,9 +98,9 @@ class Array:
             if not isinstance(index, int):
                 raise ValueError("Index should be an int")
             index = int(index)
-            if index >= self.size:
+            if index >= self.capacity:
                 raise IndexError(
-                    f"index does not exist. Valid index {self.size - self.size} - {self.size - 1}"
+                    f"index does not exist. Valid index {self.capacity - self.capacity} - {self.capacity - 1}"
                 )
             item_to_remove = self.container[index]
             self.container[index] = None
