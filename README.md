@@ -630,6 +630,12 @@ if you can identify the runtime complexity of different algorithms. It's a super
     - [ ] Space
         - contiguous in memory, so proximity helps performance
         - space needed = (array capacity, which is >= n) * size of item, but even if 2n, still O(n)
+    - [x] Practice coding using arrays and pointers, and pointer math to jump to an index instead of using indexing.
+    - [x] New raw data array with allocated memory
+    - [x] size() - number of items
+    - [x] capacity() - number of items it can hold
+    - [x] is_empty()
+    - [x] at(index) - returns the item at a given index, blows up if index out of bounds
 
 - ### Linked Lists
     - [ ] Description:
